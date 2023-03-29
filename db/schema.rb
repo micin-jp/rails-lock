@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_29_114707) do
+ActiveRecord::Schema.define(version: 2023_03_29_115121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "alternative_schedule_blocks", primary_key: "uid", id: :string, force: :cascade do |t|
+    t.integer "capacity", null: false
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "schedule_blocks", primary_key: "uid", id: :string, force: :cascade do |t|
     t.integer "capacity", null: false
