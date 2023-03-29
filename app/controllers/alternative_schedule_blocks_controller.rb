@@ -1,0 +1,2 @@
+class AlternativeScheduleBlocksController < ApplicationController
+end
