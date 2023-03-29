@@ -1,24 +1,40 @@
-# README
+# railsでのロック処理
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* 環境構築
 
-Things you may want to cover:
+```
+docker-compose up --build
+```
 
-* Ruby version
+```
+rails db:seed
+```
 
-* System dependencies
+```
+//bashに入る
+docker-compose exec web bash
 
-* Configuration
+// rails console
+rails c
+```
 
-* Database creation
+ScheduleBlockとAlternativeSchduleBlockという二つのテーブルを
+追加しどちらもcapacityというカラムの予約枠をinteger型で持っている。
 
-* Database initialization
+* 悲観的ロック
 
-* How to run the test suite
+ターミナルを二つ立ち上げて
+```
+curl --location --request POST 'http://localhost:3005/schedule_blocks/lock_transaction'
+```
+を実行する。実行処理にsleepを設けているので一つのターミナルで実行してからもう一つのを実行する形で同時リクエストを実現
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
+* 楽観的ロック
+
+ターミナルを二つ立ち上げて
+```
+curl --location --request POST 'http://localhost:3005/alternative_schedule_blocks/lock_transaction'
+```
+を実行する。実行処理にsleepを設けているので一つのターミナルで実行してからもう一つのを実行する形で同時リクエストを実現
