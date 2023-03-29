@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+ScheduleBlock.create(capacity: 6)
+AlternativeScheduleBlock.create(capacity:1)
