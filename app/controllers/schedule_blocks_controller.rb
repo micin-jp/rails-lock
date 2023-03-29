@@ -15,12 +15,10 @@ class ScheduleBlocksController < ApplicationController
     end
 
     def not_lock_transaction
-    pp 000
        block = ScheduleBlock.first
        pp block
        ScheduleBlock.transaction do
         sleep(6)
-       pp 11
         if block.capacity == 0
             render json: {message: '予約枠はありません', data:{capacity: block.capacity}}, status: :bad_request and return
         end
