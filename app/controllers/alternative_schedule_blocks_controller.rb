@@ -2,6 +2,8 @@ class AlternativeScheduleBlocksController < ApplicationController
     def lock_transaction
         begin
             block = AlternativeScheduleBlock.first
+            pp block
+
             AlternativeScheduleBlock.transaction do
               block.capacity -= 1
               block.save!

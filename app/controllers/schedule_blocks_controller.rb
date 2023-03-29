@@ -1,6 +1,7 @@
 class ScheduleBlocksController < ApplicationController
     def lock_transaction
         block = ScheduleBlock.lock.first
+        pp block
 
         ScheduleBlock.transaction do
             if block.capacity == 0
